@@ -1,0 +1,17 @@
+/venv/
+.idea
+.chainlit
+Data_2
+Business.csv
+Business.json
+chainlit.md
+json2csv.py
+main.py
+main_2.py
+main_3.py
+llama-2-7b-chat.ggmlv3.q8_0.bin
+model_4.2.py
+model_4.py
+model.py
+try.py
+req_2.txt
