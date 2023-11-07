@@ -5,7 +5,7 @@
 # what does Torch Cybersecurity works for DoD?
 
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpRequest
 from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Chat
@@ -53,7 +53,7 @@ chain = RetrievalQA.from_chain_type(llm=llm,
 
 
 # Create your views here.
-def chatbot(request):
+def chatbot(request:HttpRequest):
     chats = Chat.objects.filter(user=request.user.id)
 
     if request.method == 'POST':
