@@ -15,3 +15,5 @@ model.py
 try.py
 req_2.txt
 __MACOSX
+django_chatbot/*/__pycache__/
+django_chatbot/*/migrations/

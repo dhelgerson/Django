@@ -12,17 +12,17 @@ from .models import Chat
 from django.utils import timezone
 from django.test.client import RequestFactory
 
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.llms import CTransformers
+from langchain.vectorstores.faiss import FAISS
+from langchain.llms.ctransformers import CTransformers
 import sys
 
 
-DB_FAISS_PATH = r'C:\Users\himan\PycharmProjects\Torch_Project\vectorstore\db_Torch'
+DB_FAISS_PATH = '../vectorstore/db_Torch'
 
-llm=CTransformers(model=r"C:\Users\himan\PycharmProjects\Torch_Project\llama-2-7b-chat.ggmlv3.q8_0.bin",
+llm=CTransformers(model="../llama-2-7b-chat.ggmlv3.q8_0.bin",
                   model_type="llama",
                   config={'max_new_tokens':512,
                           'temperature':0.01})
