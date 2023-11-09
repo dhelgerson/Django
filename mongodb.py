@@ -10,20 +10,41 @@ class Table:
         self.table = db[table]
         self.requireditems = requrieditems
     def find(self,**terms):
-        self.table.find(terms)
+        return self.table.find(terms)
+    def find_one(self,**terms):
+        return self.table.find_one(terms)
     def write(self,**terms):
+        """writes a document to the table of the instance of the class calling the function
+        these terms are required for the 3 tables:
+        users:
+            user
+        conversations:
+            userID
+        messages:
+            convID
+            prompt
+            response
+        
+        IDs for the written document will be created on the fly and can be accessed with the `.inserted_id` method
+
+        Raises:
+            Exception: Missing Argument if not all required items are passed as terms
+
+        Returns:
+            InsertOneResult: the result from mongodb for inserting the document
+        """
         for item in self.requireditems:
             if item not in terms:
-                raise Exception("missing arguments")
+                raise KeyError(f"missing argument: {item}")
+        return self.table.insert_one(terms)
             
 messagesTable = Table('messages',[
-    'user',
+    'convID',
     'prompt',
     'response'
 ])
 conversationsTable = Table('conversations',[
-    'user',
-    'conversationID'
+    'userID'
 ])
 usersTable = Table('users',[
     'user'
