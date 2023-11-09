@@ -19,6 +19,8 @@ from langchain.vectorstores.faiss import FAISS
 from langchain.llms.ctransformers import CTransformers
 import sys
 
+import mongodb as db
+
 
 DB_FAISS_PATH = '../vectorstore/db_Torch'
 
@@ -93,6 +95,10 @@ def register(request):
             try:
                 user = User.objects.create_user(username, email, password1)
                 user.save()
+                
+                # adding user to mongodb for lookup
+                db.usersTable.write(user=user)
+                
                 auth.login(request, user)
                 return redirect('chatbot')
             except:
